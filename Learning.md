@@ -21,3 +21,11 @@ the efficiency measure of an algorithm is
 - how many space is it going to take
 
 ## Trade offs
+
+*Pro tip*
+
+- always discuss trade offs, (time,money, customer experience) 
+
+## Bubble sort
+
+is a teaching tool.
