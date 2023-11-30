@@ -113,7 +113,7 @@ function countTo(max,current,list){
 
 ```js
 function nestedArr(nums){
-    let sum
+    let sum =0
     for(let i = 0; i < nums.length; i++){
         const current = nums[i]
         if(Array.isArray(current)){
