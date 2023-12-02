@@ -6,13 +6,64 @@
   You'll need to write more than just one function
 */
 
-const mergeSort = (nums) => {
-  // code goes here
-};
+// const mergeSort = (nums) => {
+//   // code goes here
+
+//   // base case, return if length 1 or 0
+//   if (nums.length < 2) {
+//     return nums;
+//   }
+//   // break into two smallest arrays
+//   const length = nums.length;
+//   const middle = Math.floor(length / 2);
+//   const left = nums.slice(0, middle);
+//   const right = nums.slice(middle);
+//   // call mergeSort on left and right
+//   const sortedLeft = mergeSort(left);
+//   const sortedRight = mergeSort(right);
+
+//   // return the left and right
+//   return merge(sortedLeft, sortedRight);
+// };
+// const merge = (left, right) => {
+//   // return one sorted array
+//   const results = [];
+//   while (left.length && right.length) {
+//     if (left[0] <= right[0]) {
+//       results.push(left.shift());
+//     } else {
+//       results.push(right.shift());
+//     }
+//   }
+//   return results.concat(left, right);
+// };
 
 // unit tests
 // do not modify the below code
-test.skip("merge sort", function () {
+
+const mergeSort = (nums) => {
+  if (nums.length < 2) return nums;
+  const middle = Math.floor(nums.length / 2);
+  const left = nums.slice(0, middle);
+  const right = nums.slice(middle);
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+
+  return merge(sortedLeft, sortedRight);
+};
+
+function merge(left, right) {
+  const sorted = [];
+  while (left.length && right.length) { 
+    if (left[0] < right[0]) {
+      sorted.push(left.shift());
+    } else {
+      sorted.push(right.shift());
+    }
+  }
+  return sorted.concat(left, right);
+}
+test("merge sort", function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
   const ans = mergeSort(nums);
   expect(ans).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);

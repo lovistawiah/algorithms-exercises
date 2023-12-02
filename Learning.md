@@ -51,6 +51,8 @@ function bubbleSort(nums) {
 
 ## insertion sort
 
+worst case: n<sup>2</sup>
+
 ```js
 function insertionSort(nums) {
   // code goes here
@@ -127,3 +129,53 @@ function nestedArr(nums){
 ```
 
 ## memoization -- learn it
+
+## Merge sort
+
+ Big O = (n log n)
+
+- take an unsorted array
+- return the array if the length of the array is less than 2
+- divide the length of the unsorted array into two parts using Math.floor in `js`
+- slice into `left` and `right`
+- recursively call the `left and right` array
+- create a function takes the `left` and  `right` array and return
+- in the sub function that takes `left` and `right`, create a new empty array
+- while the length for both input arrays.
+- compare the first item of both array and push the smallest to the `new Array`
+- push the smallest array to the new empty array
+- concatenate both `left and right` array. Why ? the untouched arrays might be left in either both array.
+
+```js
+const mergeSort = (nums) => {
+  // code goes here
+
+  // base case, return if length 1 or 0
+  if (nums.length < 2) {
+    return nums;
+  }
+  // break into two smallest arrays
+  const length = nums.length;
+  const middle = Math.floor(length / 2);
+  const left = nums.slice(0, middle);
+  const right = nums.slice(middle);
+  // call mergeSort on left and right
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+
+  // return the left and right
+  return merge(sortedLeft, sortedRight);
+};
+const merge = (left, right) => {
+  // return one sorted array
+  const results = [];
+  while (left.length && right.length) {
+    if (left[0] <= right[0]) {
+      results.push(left.shift());
+    } else {
+      results.push(right.shift());
+    }
+  }
+  return results.concat(left, right);
+};
+```
