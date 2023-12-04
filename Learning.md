@@ -179,3 +179,29 @@ const merge = (left, right) => {
   return results.concat(left, right);
 };
 ```
+
+## Quick Sort
+
+- find the pivot of the array, **Note** the `last item of the array`.
+- divide and conquer the array excluding the pivot
+- the smallest numbers should be pushed to the left array and the largest number should be at the right array.
+- recursively call the on the left and right array.
+- return the concatenate the pivot and the sorted right array to the left array and return.
+
+**sample code**
+
+```js
+function quickSort(nums) {
+  // code goes here
+  if (nums.length <= 1) return nums;
+  const pivot = nums[nums.length - 1];
+  const leftArr = [];
+  const rightArr = [];
+
+  for (const num of nums.slice(0, -1)) {
+    num > pivot ? rightArr.push(num) : leftArr.push(num);
+  }
+
+  return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+}
+```
