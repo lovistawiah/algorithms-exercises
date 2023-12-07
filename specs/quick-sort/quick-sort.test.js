@@ -19,7 +19,8 @@ function quickSort(nums) {
   const leftArr = [];
   const rightArr = [];
 
-  for (const num of nums.slice(0, -1)) {
+  for (let i = 0; i < nums.length - 1; i++) {
+    const num = nums[i];
     num > pivot ? rightArr.push(num) : leftArr.push(num);
   }
 

@@ -205,3 +205,73 @@ function quickSort(nums) {
   return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
 }
 ```
+
+## Radix sort
+
+- is a non comparative sorting algorithm.
+- O(nk)
+
+- **Approach**
+- get the longest number of the array
+
+```js
+function getLongestNumber(array) {
+  let longest = 0;
+  for (let i = 0; i < array.length; i++) {
+    const currentLength = array[i].toString().length;
+    longest = currentLength > longest ? currentLength : longest;
+  }
+  return longest;
+}
+```
+
+- get the current number
+
+```js
+/**
+ *
+ * @param{number} number
+ * @param{number} place
+ * @param{number} longestNumber
+ * @return {number}
+ */
+function getDigit(number, place, longestNumber) {
+  const string = number.toString();
+  const size = string.length;
+  const mod = longestNumber - size;
+  return string[place - mod] || 0;
+}
+```
+
+- sort the number by comparing the (n)th of the number
+
+```js
+function radixSort(array) {
+  // code goes here
+  // find the longest number
+  const longestNumber = getLongestNumber(array);
+
+  // create how many buckets you need
+  // an array of 10 arrays
+  const buckets = new Array(10).fill().map(() => []);
+
+  // for loop for how many iterations you  need to do
+  for (let i = longestNumber - 1; i >= 0; i--) {
+    // while loop
+    while (array.length) {
+      const current = array.shift();
+      // enqueue the numbers into their buckets
+      buckets[getDigit(current, i, longestNumber)].push(current);
+    }
+    // for loop for each bucket
+    for (let j = 0; j < 10; j++) {
+      while (buckets[j].length) {
+        // dequeue all of the items out of the buckets
+        array.push(buckets[j].shift());
+      }
+    }
+  }
+
+  return array;
+}
+```
