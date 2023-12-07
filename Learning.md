@@ -275,3 +275,42 @@ function radixSort(array) {
   return array;
 }
 ```
+
+## Linear Search
+
+- **Approach**
+- loop through the entire if `element` found, return it else return `undefined`
+
+```js
+function linearSearch(id,array){
+  for(let i =0; i < array.length; i++){
+    if(array[i].id == id) return array[i]
+  }
+  return void 0;
+}
+```
+
+## Binary Search
+
+- **Approach**
+- within the body of a loop, find the middle of the array using `Math.floor(array.length / 2 )` to always get the middle part of the array.
+- if `element` is greater than the index `middle part` of the array. Slice and assign the possible half part the `element` can be found.
+- if `element` is less than the index  `middle part` of the array. Slice and assign the possible half part the `element` can be found.
+- return if the `element` is found else return `void 0`
+
+```js
+function binarySearch(id, array) {
+  // code goes here
+  for (let i = 0; i < array.length; i++) {
+    const middle = Math.floor(array.length / 2);
+    if (array[middle].id > id) {
+      array = array.slice(0, middle);
+    } else if (array[middle].id == id) {
+      return array[middle];
+    } else {
+      array = array.slice(middle);
+    }
+  }
+}
+
+```
