@@ -48,9 +48,9 @@ class LinkedList {
     for (let i = 0; i < index; i++) {
       current = current.next;
     }
-
     return current;
   }
+
   get(index) {
     const node = this._find(index);
     if (!node) return void 0;
