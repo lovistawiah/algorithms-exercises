@@ -315,7 +315,7 @@ function binarySearch(id, array) {
 
 ```
 
-## ArrayList 
+## ArrayList
   
   We are going to approximate an implementation of ArrayList. In JavaScript terms, that means we are
   going to implement an array using objects. You should not use arrays at all in this exercise, just
@@ -363,4 +363,72 @@ class ArrayList {
     this.length--;
   }
 }
+```
+
+Binary Search Tree!
+
+Name your class Tree.
+
+I'd suggest making another class called Node. You don't have to; you can make them all plain JS objects
+
+Here you'll make a BST. Your Tree class will have keep track of a root which will be the first item added
+to your tree. From there, if the item is less than the value of that node, it will go into its left subtree
+and if greater it will go to the right subtree.
+
+value - integer     - value being contained in the node
+left  - Node/object - the left node which itself may be another tree
+right - Node/object - the right node which itself may be another tree
+
+```js
+class Tree {
+  // code goes here
+  constructor() {
+    this.root = null;
+  }
+
+  add(value) {
+    if (this.root == null) {
+      this.root = new Node(value);
+    } else {
+      let current = this.root;
+      while (true) {
+        if (current.value > value) {
+          //go left
+          if (current.left) {
+            current = current.left;
+          } else {
+            current.left = new Node(value);
+            break;
+          }
+        } else {
+          //go right
+          if (current.right) {
+            current = current.right;
+          } else {
+            current.right = new Node(value);
+            break;
+          }
+        }
+      }
+
+      return this;
+    }
+  }
+
+  toObject() {
+    return this.root;
+  }
+}
+
+// you might consider using a Node class too
+
+class Node {
+  // code maybe goes here
+  constructor(value) {
+    this.value = value;
+    this.right = null;
+    this.left = null;
+  }
+}
+
 ```
