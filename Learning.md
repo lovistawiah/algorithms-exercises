@@ -478,7 +478,7 @@ class Node {
         this.left = new Node(value);
       }
       if (!this.right || this.right.height < this.left.height) {
-        this.height = this.height + 1;
+        this.height = this.left.height + 1;
       }
     } else {
       if (this.right) {
@@ -487,7 +487,7 @@ class Node {
         this.right = new Node(value);
       }
       if (!this.left || this.right.height > this.left.height) {
-        this.height = this.height + 1;
+        this.height = this.right.height + 1;
       }
     }
     // find the correct place to add
